@@ -10,7 +10,11 @@ def hello():
 <ul>
     <li><a href="/user/john">User Profile: john</a></li>
     <li><a href="/user/alice">User Profile: alice</a></li>
-    <li><a href="/user/bob">bob</a></li>
+    <li><a href=""></a><li>
+    <li><a href=""></a><li>
+    <li><a href=""></a><li>
+    <li><a href=""></a><li>
+    <li><a href=""></a><li>
 </ul>
 '''
 
@@ -41,7 +45,18 @@ def calculator(num1, operation, num2):
     else:
         return f"Unknown operation!{operation}"
         
-    return f"{num1} {operation} {num2} = "
+    # return f"{num1} {operation} {num2} = "
+
+@app.route("/temp/<str:unit>/<int:num>")
+def conversion(unit, num):
+    if unit == "F" or unit == "f":
+        result = ((num - 32) * 5/9)
+        return f"{num} degrees Fahrenheit = {result} degrees Celsius"
+    elif unit == "C" or unit =='c':
+        result = (num * 5/9) + 32
+        return f"{num} degrees Celsius = {result} degrees Fahrenheit"
+    else:
+        return "error, enter F or C"
 
 if __name__ == '__main__':
     app.run(debug=True, port=5050)
